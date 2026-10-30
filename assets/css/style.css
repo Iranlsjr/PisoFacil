@@ -1,0 +1,126 @@
+    :root {
+      --orange: #f47721;
+      --black: #202020;
+      --white: #ffffff;
+      --light: #f5f5f5;
+      --muted: #666666;
+    }
+    
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      color: var(--black);
+      background: var(--white);
+      line-height: 1.5;
+    }
+    a { color: inherit; text-decoration: none; }
+    .container { width: min(1120px, 92%); margin: 0 auto; }
+
+    header {
+      background: var(--white);
+      border-bottom: 1px solid #e8e8e8;
+      position: sticky;
+      top: 0;
+      z-index: 5;
+    }
+    .nav {
+      min-height: 76px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+    }
+    .logo { font-size: 1.65rem; font-weight: 800; letter-spacing: -1px; }
+    .logo span { color: var(--orange); }
+    .menu { display: flex; align-items: center; gap: 24px; font-size: .95rem; }
+    .menu a:hover { color: var(--orange); }
+    .button {
+      display: inline-block;
+      border: 0;
+      border-radius: 8px;
+      background: var(--orange);
+      color: var(--white);
+      padding: 12px 18px;
+      font-weight: 700;
+      cursor: pointer;
+    }
+.button:hover,
+.button:hover * {
+  color: #000 !important;
+}
+
+
+    .hero {
+      padding: 165px 0 68px;
+      color: var(--white);
+      background:
+        linear-gradient(90deg, rgba(20,20,20,.82), rgba(20,20,20,.38)),
+        url(a);
+      background-color: #383838;
+      background-size: cover;
+      background-position: center;
+    }
+
+    .hero h1 { max-width: 680px; font-size: clamp(2.2rem, 5vw, 3.8rem); line-height: 1.08; margin: 0 0 18px; }
+    .hero p { max-width: 600px; font-size: 1.1rem; margin: 0 0 28px; color: #f1f1f1; }
+    .search-box {
+      display: grid;
+      grid-template-columns: 1.2fr 1fr 1fr auto;
+      gap: 10px;
+      background: var(--white);
+      padding: 14px;
+      border-radius: 12px;
+      max-width: 980px;
+      box-shadow: 0 12px 35px rgba(0,0,0,.18);
+    }
+    .search-box input, .search-box select {
+      width: 100%;
+      min-width: 0;
+      border: 1px solid #dddddd;
+      border-radius: 7px;
+      padding: 12px;
+      font: inherit;
+      color: var(--black);
+      background: var(--white);
+    }
+    
+    section { padding: 100px 0; }
+    .section-heading { display: flex; align-items: end; justify-content: space-between; gap: 16px; margin-bottom: 24px; }
+    .section-heading h2 { font-size: clamp(1.6rem, 3vw, 2.2rem); margin: 0 0 4px; }
+    .section-heading p { color: var(--muted); margin: 0; }
+    .listings { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; }
+    .card { border: 1px solid #e7e7e7; border-radius: 12px; overflow: hidden; background: var(--white); }
+    .property-image {
+      min-height: 205px;
+      background: linear-gradient(135deg, #dedede, #f4f4f4);
+      display: grid;
+      place-items: center;
+      color: #666;
+      font-weight: 700;
+    }
+    .card-content { padding: 18px; }
+    .tag { display: inline-block; background: #fff0e5; color: #a94b0b; padding: 4px 9px; border-radius: 5px; font-size: .8rem; font-weight: 700; }
+    .card h3 { margin: 12px 0 4px; font-size: 1.15rem; }
+    .location { color: var(--muted); margin: 0 0 12px; }
+    .price { font-size: 1.3rem; font-weight: 800; color: var(--orange); }
+    .details { display: flex; gap: 14px; margin-top: 12px; color: var(--muted); font-size: .9rem; }
+    .how { background: var(--light); }
+    .steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+    .step { background: white; padding: 24px; border-radius: 10px; }
+    .step-number { width: 38px; height: 38px; display: grid; place-items: center; border-radius: 50%; background: var(--orange); color: white; font-weight: 800; }
+    .step h3 { margin-bottom: 8px; }
+    .step p { margin-bottom: 0; color: var(--muted); }
+    .contact { background: var(--black); color: var(--white); text-align: center; }
+    .contact p { color: #dddddd; max-width: 600px; margin: 0 auto 22px; }
+    footer { padding: 24px 0; background: #151515; color: #cccccc; font-size: .9rem; }
+    .footer-inner { display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
+
+    @media (max-width: 760px) {
+      .nav { align-items: flex-start; padding: 18px 0; flex-direction: column; }
+      .menu { flex-wrap: wrap; gap: 14px; }
+      .hero { padding: 54px 0; }
+      .search-box { grid-template-columns: 1fr; }
+      .listings, .steps { grid-template-columns: 1fr; }
+      .section-heading { align-items: flex-start; flex-direction: column; }
+    }

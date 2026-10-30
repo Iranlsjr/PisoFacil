@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Crear cuenta | Piso Fácil</title>
+  <style>
+    :root { --orange:#f47721; --black:#202020; --muted:#666; --line:#dedede; --bg:#f6f6f6; }
+    * { box-sizing:border-box; }
+    body { margin:0; font-family:Arial,Helvetica,sans-serif; color:var(--black); background:var(--bg); }
+    header { background:#fff; border-bottom:1px solid #e9e9e9; }
+    .nav { max-width:1100px; margin:auto; padding:18px 24px; display:flex; align-items:center; justify-content:space-between; gap:16px; }
+    .logo { font-size:1.6rem; font-weight:800; text-decoration:none; color:var(--black); letter-spacing:-.8px; }
+    .logo span { color:var(--orange); }
+    .nav a:last-child { color:var(--black); text-decoration:none; font-weight:700; }
+    main { min-height:calc(100vh - 75px); padding:44px 18px; display:flex; justify-content:center; align-items:flex-start; }
+    .panel { width:min(100%,570px); background:white; padding:34px; border-radius:16px; box-shadow:0 8px 28px rgba(0,0,0,.07); }
+    h1 { margin:0 0 8px; font-size:2rem; }
+    .intro { margin:0 0 26px; color:var(--muted); }
+    label { display:block; font-weight:700; font-size:.94rem; margin:16px 0 7px; }
+    input, select { width:100%; padding:13px 14px; border:1px solid var(--line); border-radius:8px; font:inherit; background:white; }
+    input:focus, select:focus { outline:2px solid #ffd2b5; border-color:var(--orange); }
+    .hint { color:var(--muted); font-size:.82rem; margin:7px 0 0; }
+    .button { width:100%; margin-top:22px; padding:14px; border:0; border-radius:8px; background:var(--orange); color:white; font-size:1rem; font-weight:800; cursor:pointer; }
+    .button:hover { filter:brightness(.96); }
+    .login { text-align:center; margin:20px 0 0; color:var(--muted); }
+    .login a { color:#b84e08; font-weight:700; }
+    .notice { display:none; padding:12px 14px; margin-top:16px; border-radius:8px; background:#fff3e9; color:#793605; font-size:.92rem; }
+    .demo { margin-top:20px; padding-top:16px; border-top:1px solid #eee; font-size:.82rem; color:var(--muted); }
+    footer { text-align:center; padding:18px; font-size:.82rem; color:var(--muted); }
+    @media(max-width:520px) { .panel { padding:24px 19px; } h1 { font-size:1.7rem; } }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="nav">
+      <img src="assets/img/logo.jpeg" alt="Piso Fácil" height="55">
+      <a href="index.html">Volver al inicio</a>
+    </div>
+  </header>
+
+  <main>
+    <section class="panel">
+      <h1>Crea tu cuenta</h1>
+      <p class="intro">Inicia sesión para encontrar viviendas o preparar tus anuncios en Piso Fácil.</p>
+
+      <form id="signup-form">
+        <label for="name">Nombre completo</label>
+        <input id="name" name="name" type="text" autocomplete="name" placeholder="Introduce tu nombre" required>
+
+        <label for="email">Correo electrónico</label>
+        <input id="email" name="email" type="email" autocomplete="email" placeholder="tu@ejemplo.com" required>
+
+        <label for="phone">Teléfono móvil (opcional)</label>
+        <input id="phone" name="phone" type="tel" autocomplete="tel" placeholder="+34 600 000 000">
+
+        <label for="account-type">¿Qué tipo de cuenta quieres crear?</label>
+        <select id="account-type" name="account-type" required>
+          <option value="">Selecciona una opción</option>
+          <option value="comprador-inquilino">Quiero comprar o alquilar una vivienda</option>
+          <option value="proprietario">Soy propietario particular</option>
+          <option value="imobiliaria">Represento a una agencia inmobiliaria</option>
+        </select>
+
+        <label for="password">Crear contraseña</label>
+        <input id="password" name="password" type="password" autocomplete="new-password" minlength="8" placeholder="Mínimo de 8 caracteres" required>
+        <p class="hint">Usa al menos 8 caracteres. No reutilices una contraseña importante.</p>
+
+        <label for="confirm-password">Confirmar contraseña</label>
+        <input id="confirm-password" name="confirm-password" type="password" autocomplete="new-password" minlength="8" placeholder="Vuelve a introducir la contraseña" required>
+
+        <button class="button" type="submit">Crear mi cuenta</button>
+        <div class="notice" id="notice" role="status"></div>
+      </form>
+
+      <p class="login">¿Ya tienes una cuenta? <a href="#" id="login-link">Iniciar sesión</a></p>
+    </section>
+  </main>
+
+  <footer>© <span id="year"></span> Piso Fácil · Proyecto en desarrollo</footer>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+    const form = document.getElementById('signup-form');
+    const notice = document.getElementById('notice');
+
+    form.addEventListener('submit', function (event) {
+      event.preventDefault();
+      const password = document.getElementById('password').value;
+      const confirmPassword = document.getElementById('confirm-password').value;
+      notice.style.display = 'block';
+
+      if (password !== confirmPassword) {
+        notice.textContent = 'As senhas não são iguais. Confira os dois campos.';
+        return;
+      }
+      notice.textContent = 'A aparência do formulário está funcionando! O cadastro real será ligado a um sistema seguro numa próxima etapa. Nenhuma conta foi criada ou guardada.';
+    });
+
+    document.getElementById('login-link').addEventListener('click', function (event) {
+      event.preventDefault();
+      notice.style.display = 'block';
+      notice.textContent = 'A tela de login será criada numa próxima etapa. Esta versão é apenas visual.';
+    });
+  </script>
+</body>
+</html>

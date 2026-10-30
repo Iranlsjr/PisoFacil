@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Piso Fácil — encuentra viviendas para comprar o alquilar.">
+  <title>Piso Fácil | Encuentra tu próxima vivienda</title>
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+
+<body>
+  <header>
+    <div class="container nav">
+      <img src="assets/img/logo.jpeg" alt="Piso Fácil" height="55">
+      <nav class="menu" aria-label="Menu principal">
+        <a href="#imoveis">Encontrar inmuebles</a>
+        <a href="#como-funciona">Cómo funciona</a>
+        <a href="#contato">Contacto</a>
+        <a href="cadastro.html">Anunciar inmueble</a>
+        <a class="button" href="cadastro.html">Entrar / Crear registro</a>
+        <a href="quien_somos.html">Quiénes Somos</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero" style="background-image: url('assets/img/banner2.jpeg');">
+      <div class="container">
+        <h1>El lugar indicado para encontrar tu próximo hogar. </h1>
+        <p>Encuentra casas y apartamentos para comprar o alquilar. Piso Fácil te acerca a quien publica el anuncio.</p>
+        <form class="search-box" id="search-form">
+          <input id="city" type="text" placeholder="Ciudad o región" aria-label="Cidade ou região">
+          <select id="purpose" aria-label="Finalidade">
+            <option value="">Comprar o alquilar</option>
+            <option value="Comprar">Comprar</option>
+            <option value="Alugar">Alquilar</option>
+          </select>
+          <select id="type" aria-label="Tipo de imóvel">
+            <option value="">Tipo de inmueble</option>
+            <option value="Apartamento">Apartamento</option>
+            <option value="Casa">Casa</option>
+            <option value="Quarto">Habitación</option>
+          </select>
+          <button class="button" type="submit">Buscar inmuebles</button>
+        </form>
+        <p id="search-message" role="status" style="margin-top:14px;margin-bottom:0;font-size:.95rem;"></p>
+      </div>
+    </section>
+
+    <section id="imoveis">
+      <div class="container">
+        <div class="section-heading">
+          <div>
+            <h2>Propiedades destacadas</h2>
+          </div>
+        </div>
+        <div class="listings">
+
+          <article class="card" data-purpose="Alugar" data-type="Apartamento" data-city="Madrid">
+            <div class="property-image">Foto do imóvel</div>
+            <div class="card-content">
+              <span class="tag">En alquiler</span>
+              <h3>Apartamento acogedor</h3>
+              <p class="location">Madrid, España</p>
+              <div class="price">950 €/mes</div>
+              <div class="details"><span>2 habitaciones</span><span>1 baño</span></div>
+            </div>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <section class="how" id="como-funciona">
+      <div class="container">
+        <div class="section-heading">
+          <div>
+            <h2>Cómo funciona Piso Fácil</h2>
+            <p>Una forma sencilla de acercar a quienes anuncian a quienes buscan.</p>
+          </div>
+        </div>
+        <div class="steps">
+          <article class="step">
+            <div class="step-number">1</div>
+            <h3>Encuentra una vivienda</h3>
+            <p>Busca por ubicación, finalidad y tipo de vivienda.</p>
+          </article>
+          <article class="step">
+            <div class="step-number">2</div>
+            <h3>Consulta los detalles.</h3>
+            <p>Consulta las fotos, el precio, la ubicación y la información del anuncio.</p>
+          </article>
+          <article class="step">
+            <div class="step-number">3</div>
+            <h3>Ponte en contacto.</h3>
+            <p>Habla con el equipo de Piso Fácil para obtener más información sobre la vivienda.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="contact" id="contato">
+      <div class="container">
+        <h2>¿Quieres anunciar una vivienda o encontrarla?</h2>
+        <p>Estamos preparando Piso Fácil. Muy pronto podrás ponerte en contacto con nosotros para anunciar una vivienda
+          o resolver tus dudas.</p>
+        <a class="button" href="mailto:contato@pisofacil.example?subject=Contato%20Piso%20F%C3%A1cil">Enviar correo
+          electrónico</a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container footer-inner">
+      <span>© <span id="year"></span> Piso Fácil</span>
+      <span>Proyecto en desarrollo</span>
+    </div>
+  </footer>
+
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+
+    document.getElementById("search-form").addEventListener("submit", function (event) {
+      event.preventDefault();
+      const city = document.getElementById("city").value.trim().toLowerCase();
+      const purpose = document.getElementById("purpose").value;
+      const type = document.getElementById("type").value;
+      const cards = Array.from(document.querySelectorAll(".card"));
+      let visible = 0;
+
+      cards.forEach(function (card) {
+        const matchesCity = !city || card.dataset.city.toLowerCase().includes(city);
+        const matchesPurpose = !purpose || card.dataset.purpose === purpose;
+        const matchesType = !type || card.dataset.type === type;
+        const show = matchesCity && matchesPurpose && matchesType;
+        card.style.display = show ? "" : "none";
+        if (show) visible++;
+      });
+
+      document.getElementById("search-message").textContent =
+        visible + (visible === 1 ? " anúncio de demonstração encontrado." : " anúncios de demonstração encontrados.") +
+        " — os anúncios são fictícios nesta versão inicial.";
+      document.getElementById("imoveis").scrollIntoView({ behavior: "smooth" });
+    });
+  </script>
+</body>
+
+</html>
